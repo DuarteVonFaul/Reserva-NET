@@ -1,39 +1,46 @@
 package com.mycompany.reservanetsystem;
 
-import javax.swing.*;
 import java.awt.Container;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
-
-public class SelecaoLocalFrame extends JFrame implements ActionListener {
-    private int larguraFrame = 500;
-    private int alturaFrame = 400;
+public class SelecaoLocalFrame extends JFrame{
+    private int larguraFrame = 370;
+    private int alturaFrame = 600;
 
     Container container = getContentPane();
-    JLabel lblBoasVindas = new JLabel("Seja bem-vindo(a)!");
-    JLabel lblMensagemAcao = new JLabel("Que tipo de locação deseja fazer?");
+    JLabel lblSelecionaLocal = new JLabel("Selecione o local a ser reservado");
     ImageIcon iconeSistema = new ImageIcon("src/main/java/images/reservanet-icon-horizontal-login.png");
     JLabel lblIconeSistema = new JLabel(iconeSistema);
-    JTextField txtUsuario = new JTextField();
-    JPasswordField pwSenha = new JPasswordField();
-    JButton btnEscolherSala = new JButton("SALA");
-    JButton btnEscolherAuditorio = new JButton("AUDITÓRIO");
-    JButton btnVerHistorico = new JButton("HISTÓRICO DE LOCAÇÕES");
+    JButton btnSala = new JButton("SALA");
+    JButton btnAuditorio = new JButton("AUDITÓRIO");
 
-    JMenuBar menuBar = new JMenuBar();
-    JMenu m1 = new JMenu("Arquivo");
-    JMenu m2 = new JMenu("Editar");
-    JMenuItem menuItem1 = new JMenuItem("Ver Histórico de Locações");
-    JMenuItem menuItem2 = new JMenuItem("Sair");
-    JMenuItem menuItem3 = new JMenuItem("Locação Anterior");
+    JMenuBar bar = new JMenuBar();
+    JMenu m1 = new JMenu("Reservas");
+    JMenu m2 = new JMenu("Ajuda");
+    JMenu m3 = new JMenu("Sair");
 
+    JMenuItem r1 = new JMenuItem("Visualizar");
+    JMenuItem r2 = new JMenuItem("Imprimir");
+    JMenuItem r3 = new JMenuItem("Alterar");
+    JMenuItem r4 = new JMenuItem("Cancelar");
+    JMenuItem r5 = new JMenuItem("Histórico");
+
+    JMenuItem a1 = new JMenuItem("Perguntas Frequentes");
+    JMenuItem a2 = new JMenuItem("Ajuda");
+
+    JMenuItem s1 = new JMenuItem("Sair do ReservaNet");     
+            
     public SelecaoLocalFrame()
     {
         definirLayout();
         definirLocalizacaoETamanho();
         addComponentesAoContainer();
-        addActionEvent();
     }
 
     public void definirLayout()
@@ -46,76 +53,56 @@ public class SelecaoLocalFrame extends JFrame implements ActionListener {
         //Dimensoes do Icone
         int larguraIcone = 250;
         int alturaIcone = 110;
-        int xIcone = this.alinharIcone(this.larguraFrame,larguraIcone);
+        int xIcone = this.centralizarIcone(this.larguraFrame,larguraIcone);
         int yIcone = (int)(alturaFrame * 0.06);
 
         lblIconeSistema.setBounds(xIcone,yIcone,larguraIcone,alturaIcone);
-        lblBoasVindas.setBounds(50, 190, 100, 30);
-        lblMensagemAcao.setBounds(50, 210, 100, 30);
-        btnEscolherSala.setBounds(50, 260, 100, 30);
-        btnEscolherAuditorio.setBounds(200, 260, 100, 30);
-        btnVerHistorico.setBounds(50, 290, 250, 30);
+        lblSelecionaLocal.setBounds(50, 190, 200, 30);
+        btnSala.setBounds(50, 260, 100, 30);
+        btnAuditorio.setBounds(200, 260, 100, 30);
 
+            bar.add(m1);
+	    bar.add(m2);
+            bar.add(m3);
+	    m1.add(r1);
+            m1.add(r2);
+            m1.add(r3);
+            m1.add(r4);
+            m1.add(r5);
+	    m2.add(a1);
+	    m2.add(a2);
+            m3.add(s1);
+        
     }
 
     public void addComponentesAoContainer()
     {
-        menuBar.add(m1);
-        menuBar.add(m2);
-
-        m1.add(menuItem1);
-        m1.add(menuItem2);
-
-        m2.add(menuItem3);
-
-        container.add(menuBar);
+        container.add(lblSelecionaLocal);
         container.add(lblIconeSistema);
-        container.add(lblBoasVindas);
-        container.add(lblMensagemAcao);
-        container.add(btnEscolherSala);
-        container.add(btnEscolherAuditorio);
-        container.add(btnVerHistorico);
+        container.add(btnSala);
+        container.add(btnAuditorio);
     }
 
-    public void addActionEvent()
+    public void GUISelecaoLocal(SelecaoLocalFrame selecaoLocalFrame)
     {
-        btnEscolherSala.addActionListener(this);
-        btnEscolherAuditorio.addActionListener(this);
+        selecaoLocalFrame.setTitle("Selecionar Local");
+        selecaoLocalFrame.setVisible(true);
+        selecaoLocalFrame.setBounds(10, 10, this.larguraFrame, this.alturaFrame);
+        selecaoLocalFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        selecaoLocalFrame.setResizable(false);
+        selecaoLocalFrame.setJMenuBar(bar);
+            
     }
 
-    public void GUISelecaoLocal()
-    {
-        this.setTitle("ReservaNet | Escolha Local");
-        this.setVisible(true);
-        this.setBounds(10, 10, this.larguraFrame, this.alturaFrame);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(false);
-    }
-
-    public int alinharIcone(int larguraFrame, int larguraImagem){
+    public int centralizarIcone(int larguraFrame, int larguraImagem){
         return (int)((larguraFrame - larguraImagem)/2);
     }
+   
+    public static void main(String[] args) {
+        SelecaoLocalFrame selecaoLocalFrame = new SelecaoLocalFrame();
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        //Para o botão SALA
-        if (e.getSource() == btnEscolherSala) {
-            String usuario = txtUsuario.getText();
-            String senha = pwSenha.getText();
-            if (usuario.equalsIgnoreCase("lbarros") && senha.equalsIgnoreCase("adm111")) {
-                JOptionPane.showMessageDialog(this, "Login Successful");
-            } else {
-                JOptionPane.showMessageDialog(this, "Invalid Username or Password");
-            }
-
-        }
-        //Para o botão AUDITÓRIO
-        if (e.getSource() == btnEscolherAuditorio) {
-            txtUsuario.setText("");
-            pwSenha.setText("");
-        }
-
+        selecaoLocalFrame.GUISelecaoLocal(selecaoLocalFrame);
+   
     }
-
 }
 

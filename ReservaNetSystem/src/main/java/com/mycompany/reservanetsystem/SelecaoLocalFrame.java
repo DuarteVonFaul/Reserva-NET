@@ -85,7 +85,7 @@ public class SelecaoLocalFrame extends JFrame implements ActionListener {
 
     public void GUISelecaoLocal()
     {
-        this.setTitle("Acesso ao Sistema");
+        this.setTitle("ReservaNet | Escolha Local");
         this.setVisible(true);
         this.setBounds(10, 10, this.larguraFrame, this.alturaFrame);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

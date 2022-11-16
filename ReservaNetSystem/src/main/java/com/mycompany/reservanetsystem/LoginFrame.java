@@ -17,9 +17,9 @@ public class LoginFrame extends JFrame implements ActionListener {
     private int alturaFrame = 600;
 
     Container container = getContentPane();
-    JLabel lblUsuario = new JLabel("Usuário");
-    JLabel lblSenha = new JLabel("Senha");
     ImageIcon iconeSistema = new ImageIcon("src/main/java/images/reservanet-icon-horizontal-login.png");
+    JLabel lblNome = new JLabel("Nome: ");
+    JLabel lblIdentificacao = new JLabel("Identificacao");
     JLabel lblIconeSistema = new JLabel(iconeSistema);
     JTextField txtUsuario = new JTextField();
     JPasswordField pwSenha = new JPasswordField();
@@ -46,11 +46,11 @@ public class LoginFrame extends JFrame implements ActionListener {
         int larguraIcone = 250;
         int alturaIcone = 110;
         int xIcone = this.centralizarIcone(this.larguraFrame,larguraIcone);
-        int yIcone = (int)(alturaFrame * 0.06);
+        int yIcone = (int)(alturaFrame * 0.05);
 
         lblIconeSistema.setBounds(xIcone,yIcone,larguraIcone,alturaIcone);
-        lblUsuario.setBounds(50, 190, 100, 30);
-        lblSenha.setBounds(50, 260, 100, 30);
+        lblNome.setBounds(50, 190, 100, 30);
+        lblIdentificacao.setBounds(50, 260, 100, 30);
         txtUsuario.setBounds(150, 190, 150, 30);
         pwSenha.setBounds(150, 260, 150, 30);
         ckExibirSenha.setBounds(150, 290, 150, 30);
@@ -61,8 +61,8 @@ public class LoginFrame extends JFrame implements ActionListener {
 
     public void addComponentesAoContainer()
     {
-        container.add(lblUsuario);
-        container.add(lblSenha);
+        container.add(lblNome);
+        container.add(lblIdentificacao);
         container.add(lblIconeSistema);
         container.add(txtUsuario);
         container.add(pwSenha);
@@ -98,7 +98,7 @@ public class LoginFrame extends JFrame implements ActionListener {
 
     public void GUILogin(LoginFrame loginFrame)
     {
-        loginFrame.setTitle("Acesso ao Sistema");
+        loginFrame.setTitle("ReservaNet | Acesso ao Sistema");
         loginFrame.setVisible(true);
         loginFrame.setBounds(10, 10, this.larguraFrame, this.alturaFrame);
         loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -111,6 +111,11 @@ public class LoginFrame extends JFrame implements ActionListener {
         if (e.getSource() == btnAcessar) {
             if(!this.autenticarUsuario(txtUsuario.getText(), pwSenha.getText())){
                 JOptionPane.showMessageDialog(this, "Invalid Username or Password");
+
+                //Remove it later
+                this.hide();
+                ReservasAnterioresFrame formReservasAnteriores = new ReservasAnterioresFrame();
+                formReservasAnteriores.GUIReservasAnteriores();
             }
         }
 

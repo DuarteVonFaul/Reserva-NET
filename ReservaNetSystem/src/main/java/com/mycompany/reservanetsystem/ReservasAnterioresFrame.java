@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 
 public class ReservasAnterioresFrame extends JFrame implements ActionListener {
@@ -29,6 +28,7 @@ public class ReservasAnterioresFrame extends JFrame implements ActionListener {
     JLabel lblProximaReserva = new JLabel("Próxima Reserva: <data_prox_reserva>");
     JLabel lblListaReservas = new JLabel("Lista de Reservas ");
 
+    //MENU
     String[] colunas = { "ID", "Locação", "Data da Locação", "Duração", "Status", "Recursos"};
     String[][] dados = {
             { "21d5f", "Sala", "2022-11-13", "1 dia", "Aprovada", "Sim" },
@@ -40,9 +40,14 @@ public class ReservasAnterioresFrame extends JFrame implements ActionListener {
     JTable tabelaReservas = new JTable(dados, colunas);
     JScrollPane scrollPane = new JScrollPane(tabelaReservas);
 
+
     JButton btnEscolherSala = new JButton("SALA");
     JButton btnEscolherAuditorio = new JButton("AUDITÓRIO");
     JButton btnVerHistorico = new JButton("HISTÓRICO DE LOCAÇÕES");
+
+    //FOOTER
+    JPanel painelRodape = new JPanel();
+    JLabel lblCopyright = new JLabel("© 2022 ReservaNet - LAGR");
 
 
     public ReservasAnterioresFrame()
@@ -66,11 +71,13 @@ public class ReservasAnterioresFrame extends JFrame implements ActionListener {
 //        int xIcone = (int)(larguraFrame * 0.06);
 //        int yIcone = (int)(alturaFrame * 0.06);
 
-        lblIconeSistema.setBounds(20,30,larguraIcone,alturaIcone);
-        lblNome.setBounds(150, 40, 200, 30);
-        lblCodigo.setBounds(150, 70, 200, 30);
-        lblListaReservas.setBounds(20, 150, 200, 30);
-        tabelaReservas.setBounds(20,170, (int)(larguraFrame * 0.90), 250);
+        lblIconeSistema.setBounds(20,20,larguraIcone,alturaIcone);
+        lblNome.setBounds(150, 30, 200, 30);
+        lblCodigo.setBounds(150, 60, 200, 30);
+        lblListaReservas.setBounds(20, 140, 200, 30);
+        lblCopyright.setBounds(20, (alturaFrame - 35), 150, 25);
+        tabelaReservas.setBounds(20,190, (int)(larguraFrame * 0.90), 150);
+        painelRodape.setBounds(0, (alturaFrame - 40), larguraFrame, 40);
 
     }
 
@@ -88,7 +95,11 @@ public class ReservasAnterioresFrame extends JFrame implements ActionListener {
         container.add(lblIconeSistema);
         container.add(lblNome);
         container.add(lblCodigo);
+        container.add(lblListaReservas);
+        container.add(lblCopyright);
+        container.add(tabelaReservas);
         container.add(scrollPane);
+        container.add(painelRodape);
         container.add(btnEscolherAuditorio);
         container.add(btnVerHistorico);
     }
@@ -104,6 +115,9 @@ public class ReservasAnterioresFrame extends JFrame implements ActionListener {
         //Menu
         menuBar.setSize (300, 150);
         menuBar.setVisible (true);
+
+        //Table
+        tabelaReservas.setVisible(true);
 
         //Frame
         this.setTitle("ReservaNet | Reservas Anteriores");

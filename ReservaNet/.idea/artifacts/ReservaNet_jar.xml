@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="ReservaNet:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ReservaNet_jar</output-path>
+    <root id="archive" name="ReservaNet.jar">
+      <element id="module-output" name="ReservaNet" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jdatepicker/jdatepicker/1.3.4/jdatepicker-1.3.4.jar" path-in-jar="/" />
+      <element id="library" level="project" name="Maven: org.jdatepicker:jdatepicker:1.3.4" />
+    </root>
+  </artifact>
+</component>
